@@ -54,7 +54,7 @@ namespace CS3358_FA2018
    sequence::sequence(const sequence& source) : used(source.used), current_index(source.used), capacity(source.capacity)
    {
 	   data = new value_type[source.capacity];
-	   for (int i = 0; i < used; i++)
+	   for (size_type i = 0; i < used; i++)
 	   {
 		   data[i] = source.data[i];
 	   }
@@ -78,7 +78,7 @@ namespace CS3358_FA2018
 
 	   value_type *holderTemp = new value_type[new_capacity];
 
-	   for (int i = 0; i < used; i++)
+	   for (size_type i = 0; i < used; i++)
 	   {
 		   holderTemp[i] = data[i];
 	   }
@@ -118,7 +118,7 @@ namespace CS3358_FA2018
 	   {
 		   data[current_index] = entry;
 		   current_index = 0;
-		   for (int i = used; i > current_index; i--)
+		   for (size_type i = used; i > current_index; i--)
 		   {
 			   data[i] = data[i - 1];
 		   }
@@ -127,7 +127,7 @@ namespace CS3358_FA2018
 		   return;
 	   }
 
-	   for (int i = used; i > current_index; i--)
+	   for (size_type i = used; i > current_index; i--)
 	   {
 		   data[i] = data[i - 1];
 	   }
@@ -158,7 +158,7 @@ namespace CS3358_FA2018
 		   return;
 	   }
 
-	   for (int i = used; i > current_index; i--)
+	   for (size_type i = used; i > current_index; i--)
 	   {
 		   data[i] = data[i - 1];
 	   }
@@ -180,7 +180,7 @@ namespace CS3358_FA2018
 		   return;
 	   }
 
-	   for (int i = current_index; i < used; i++)
+	   for (size_type i = current_index; i < used; i++)
 	   {
 		   data[i] = data[i + 1];
 	   }
@@ -199,7 +199,7 @@ namespace CS3358_FA2018
 		   this->data = new value_type[source.capacity];
 	   }
 
-	   for (int i = 0; i < source.used; i++)
+	   for (size_type i = 0; i < source.used; i++)
 	   {
 		   data[i] = source.data[i];
 	   }
@@ -215,15 +215,8 @@ namespace CS3358_FA2018
 
    bool sequence::is_item() const
    {
-	   if (current_index == used)
-	   {
-		   return false;
-	   }
-	   else
-	   {
-		   return true;
-	   }
-	}
+	   return (current_index != used);
+   }
 
    sequence::value_type sequence::current() const
    {
@@ -231,4 +224,6 @@ namespace CS3358_FA2018
 	   return data[current_index];
    }
 }
+
+
 
